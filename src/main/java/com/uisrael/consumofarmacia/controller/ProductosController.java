@@ -5,17 +5,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/productos")
+@RequestMapping("/producto")
 public class ProductosController {
 			
 	@GetMapping
 	public String leerPagina() {
-		return "productos/listar";
+		return "/productos/listar";
 	}
 	
-	@GetMapping("/listar")
-	public String listarPagina() {
-		return "productos/listar";
-	}
+// hola
 
 }
