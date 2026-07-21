@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="/dashboard">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Clientes</title>
+</head>
+
+<body>
+
+	<div layout:fragment="contenidopaginas">
+
+		<div class="page-header">
+			<h3 class="page-title">Clientes</h3>
+		</div>
+
+		<div class="card">
+
+			<div class="card-body">
+
+				<div class="d-flex justify-content-between align-items-center mb-4">
+
+					<div>
+
+						<p class="text-muted mb-0">
+							Listado de todos los clientes registrados
+						</p>
+					</div>
+
+					<a th:href="@{/clientes/nuevo}"
+					   class="btn btn-gradient-primary">
+
+						<i class="mdi mdi-plus"></i>
+						Nuevo cliente
+
+					</a>
+
+				</div>
+
+				<div class="row mb-4">
+
+					<div class="col-md-4">
+
+						<input type="text"
+							   class="form-control"
+							   placeholder="Buscar cliente...">
+
+					</div>
+
+					<div class="col-md-3">
+
+						<select class="form-select">
+							<option>Todos</option>
+							<option>Activos</option>
+							<option>Inactivos</option>
+						</select>
+
+					</div>
+
+					<div class="col-md-5 text-end">
+
+						<button class="btn btn-outline-primary">
+
+							<i class="mdi mdi-refresh"></i>
+							Actualizar
+
+						</button>
+
+					</div>
+
+				</div>
+
+				<div class="table-responsive">
+
+					<table class="table table-hover">
+
+						<thead>
+
+							<tr>
+								<th>#</th>
+								<th>Nombre</th>
+								<th>Apellido</th>
+								<th>Cédula</th>
+								<th>Correo</th>
+								<th>Teléfono</th>
+								<th>Dirección</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+							</tr>
+
+						</thead>
+
+						<tbody>
+
+							<tr th:each="cliente, contador : ${listarclientes}">
+
+								<td th:text="${contador.count}"></td>
+
+								<td th:text="${cliente.nombre}"></td>
+
+								<td th:text="${cliente.apellido}"></td>
+
+								<td th:text="${cliente.cedula}"></td>
+
+								<td th:text="${cliente.correo}"></td>
+
+								<td th:text="${cliente.telefono}"></td>
+
+								<td th:text="${cliente.direccion}"></td>
+
+								<td>
+
+									<span th:if="${cliente.estado}"
+										  class="badge badge-gradient-success">
+										Activo
+									</span>
+
+									<span th:unless="${cliente.estado}"
+										  class="badge badge-gradient-danger">
+										Inactivo
+									</span>
+
+								</td>
+
+								<td>
+
+									<button class="btn btn-sm btn-outline-primary">
+										<i class="mdi mdi-eye"></i>
+									</button>
+
+									<button class="btn btn-sm btn-outline-warning">
+										<i class="mdi mdi-pencil"></i>
+									</button>
+
+									<button class="btn btn-sm btn-outline-danger">
+										<i class="mdi mdi-delete"></i>
+									</button>
+
+								</td>
+
+							</tr>
+
+							<tr th:if="${#lists.isEmpty(listarclientes)}">
+
+								<td colspan="9"
+									class="text-center text-muted">
+
+									No existen clientes registrados
+
+								</td>
+
+							</tr>
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

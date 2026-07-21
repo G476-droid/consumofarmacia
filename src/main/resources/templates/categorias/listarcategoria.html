@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="/dashboard">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<title>Categorías</title>
+</head>
+<body>
+
+	<div layout:fragment="contenidopaginas">
+		<div class="page-header">
+			<h3 class="page-title">Categorías</h3>
+		</div>
+
+		<div class="card">
+
+			<div class="card-body">
+
+				<div class="d-flex justify-content-between align-items-center mb-4">
+
+					<div>
+						<h4 class="card-title mb-1">Categorías</h4>
+						<p class="text-muted mb-0">Listado de todas las categorías
+							registradas</p>
+					</div>
+
+					<a th:href="@{/categoria/nuevacategoria}" class="btn btn-gradient-primary">
+						<i class="mdi mdi-plus"></i> Nueva categoría
+					</a>
+
+				</div>
+
+				<div class="row mb-4">
+
+					<div class="col-md-4">
+						<input type="text" class="form-control"
+							placeholder="Buscar categoría...">
+					</div>
+
+					<div class="col-md-3">
+						<select class="form-select">
+							<option>Todos</option>
+							<option>Activo</option>
+							<option>Inactivo</option>
+						</select>
+					</div>
+
+					<div class="col-md-5 text-end">
+						<button class="btn btn-outline-primary">
+							<i class="mdi mdi-refresh"></i> Actualizar
+						</button>
+					</div>
+
+				</div>
+
+				<div class="table-responsive">
+
+					<table class="table table-hover">
+
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Nombre</th>
+								<th>Descripción</th>
+								<th>Acciones</th>
+							</tr>
+						</thead>
+
+						<tbody>
+
+							<tr th:each="categoria, contador : ${listarcategorias}">
+
+								<td th:text="${contador.count}"></td>
+
+								<td th:text="${categoria.nombre}"></td>
+
+								<td th:text="${categoria.descripcion}"></td>
+
+								<td>
+									<button class="btn btn-sm btn-outline-primary">
+										<i class="mdi mdi-eye"></i>
+									</button>
+
+									<button class="btn btn-sm btn-outline-warning">
+										<i class="mdi mdi-pencil"></i>
+									</button>
+
+									<button class="btn btn-sm btn-outline-danger">
+										<i class="mdi mdi-delete"></i>
+									</button>
+
+								</td>
+
+							</tr>
+
+							<tr th:if="${#lists.isEmpty(listarcategorias)}">
+
+								<td colspan="5" class="text-center text-muted">No existen
+									categorías registradas</td>
+
+							</tr>
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>
