@@ -2,6 +2,8 @@ package com.uisrael.consumofarmacia.model.dto.request;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 @Data
 public class InventariosRequestDto {
@@ -11,6 +13,7 @@ public class InventariosRequestDto {
 
 	private String stock;
 	private String stockMinimo;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaActualizacion;
 	private boolean estado;
 

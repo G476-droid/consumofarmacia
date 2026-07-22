@@ -30,7 +30,7 @@ public class InventariosController {
 
 	        model.addAttribute("listarinventarios", resultadoBD);
 
-	        return "/inventarios/listar";
+	        return "/inventarios/listarinventario";
 	    }
 
 	    @GetMapping("/nuevo")
@@ -41,7 +41,7 @@ public class InventariosController {
 	                new InventariosRequestDto()
 	        );
 
-	        return "/inventarios/crear";
+	        return "/inventarios/nuevoinventario";
 	    }
 
 	    @PostMapping("/guardar")

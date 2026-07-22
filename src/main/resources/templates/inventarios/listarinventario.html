@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{dashboard}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inventarios</title>
+</head>
+
+<body>
+
+<div layout:fragment="contenidopaginas">
+
+    <div class="page-header">
+        <h3 class="page-title">Gestión de inventarios</h3>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a th:href="@{/inventario}">Inventarios</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Listado
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row">
+
+        <div class="col-12 grid-margin stretch-card">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+
+                        <h4 class="card-title mb-0">
+                            Lista de inventarios
+                        </h4>
+
+                        <a th:href="@{/inventario/nuevo}"
+                           class="btn btn-gradient-primary">
+                            Nuevo inventario
+                        </a>
+
+                    </div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-striped table-bordered">
+
+                            <thead>
+                            <tr>
+                                <th>Stock</th>
+                                <th>Stock mínimo</th>
+                                <th>Fecha de actualización</th>
+                                <th>Estado</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <tr th:each="inventario : ${listarinventarios}">
+
+                                <td th:text="${inventario.stock}">
+                                    Stock
+                                </td>
+
+                                <td th:text="${inventario.stockMinimo}">
+                                    Stock mínimo
+                                </td>
+
+                                <td th:text="${inventario.fechaActualizacion != null
+                                    ? #dates.format(inventario.fechaActualizacion, 'dd/MM/yyyy')
+                                    : 'Sin fecha'}">
+                                    Fecha
+                                </td>
+
+                                <td>
+
+                                    <span th:if="${inventario.estado}"
+                                          class="badge badge-success">
+                                        Activo
+                                    </span>
+
+                                    <span th:unless="${inventario.estado}"
+                                          class="badge badge-danger">
+                                        Inactivo
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <tr th:if="${#lists.isEmpty(listarinventarios)}">
+
+                                <td colspan="4"
+                                    class="text-center">
+                                    No existen inventarios registrados.
+                                </td>
+
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

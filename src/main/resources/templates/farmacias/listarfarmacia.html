@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{dashboard}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Farmacias</title>
+</head>
+
+<body>
+
+	<div layout:fragment="contenidopaginas">
+
+		<div class="page-header">
+			<h3 class="page-title">Farmacias</h3>
+		</div>
+
+		<div class="card">
+
+			<div class="card-body">
+
+				<div class="d-flex justify-content-between align-items-center mb-4">
+
+					<div>
+						<p class="text-muted mb-0">
+							Listado de todas las farmacias registradas
+						</p>
+					</div>
+
+					<a th:href="@{/farmacia/nuevo}"
+					   class="btn btn-gradient-primary">
+
+						<i class="mdi mdi-plus"></i>
+						Nueva farmacia
+
+					</a>
+
+				</div>
+
+				<div class="row mb-4">
+
+					<div class="col-md-4">
+
+						<input type="text"
+							   class="form-control"
+							   placeholder="Buscar farmacia...">
+
+					</div>
+
+					<div class="col-md-3">
+
+						<select class="form-select">
+							<option>Todos</option>
+							<option>Activos</option>
+							<option>Inactivos</option>
+						</select>
+
+					</div>
+
+					<div class="col-md-5 text-end">
+
+						<a th:href="@{/farmacia}"
+						   class="btn btn-outline-primary">
+
+							<i class="mdi mdi-refresh"></i>
+							Actualizar
+
+						</a>
+
+					</div>
+
+				</div>
+
+				<div class="table-responsive">
+
+					<table class="table table-hover">
+
+						<thead>
+
+							<tr>
+								<th>#</th>
+								<th>Nombre</th>
+								<th>Dirección</th>
+								<th>Zona</th>
+								<th>Teléfono</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+							</tr>
+
+						</thead>
+
+						<tbody>
+
+							<tr th:each="farmacia, contador : ${listarfarmacias}">
+
+								<td th:text="${contador.count}"></td>
+
+								<td th:text="${farmacia.nombre}"></td>
+
+								<td th:text="${farmacia.direccion}"></td>
+
+								<td th:text="${farmacia.zona}"></td>
+
+								<td th:text="${farmacia.telefono}"></td>
+
+								<td>
+
+									<span th:if="${farmacia.estado}"
+										  class="badge badge-gradient-success">
+										Activo
+									</span>
+
+									<span th:unless="${farmacia.estado}"
+										  class="badge badge-gradient-danger">
+										Inactivo
+									</span>
+
+								</td>
+
+								<td>
+
+									<button class="btn btn-sm btn-outline-primary">
+										<i class="mdi mdi-eye"></i>
+									</button>
+
+									<button class="btn btn-sm btn-outline-warning">
+										<i class="mdi mdi-pencil"></i>
+									</button>
+
+									<button class="btn btn-sm btn-outline-danger">
+										<i class="mdi mdi-delete"></i>
+									</button>
+
+								</td>
+
+							</tr>
+
+							<tr th:if="${#lists.isEmpty(listarfarmacias)}">
+
+								<td colspan="7"
+									class="text-center text-muted">
+
+									No existen farmacias registradas
+
+								</td>
+
+							</tr>
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>
