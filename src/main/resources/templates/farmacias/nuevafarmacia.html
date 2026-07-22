@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="/dashboard">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Nueva farmacia</title>
+</head>
+
+<body>
+
+	<div layout:fragment="contenidopaginas">
+
+		<div class="page-header">
+
+			<h3 class="page-title">
+				Nueva farmacia
+			</h3>
+
+		</div>
+
+		<div class="card">
+
+			<div class="card-body">
+
+				<form th:action="@{/farmacia/guardar}"
+					  th:object="${farmacia}"
+					  method="post">
+
+					<div class="row">
+
+						<div class="col-md-6 mb-3">
+
+							<label class="form-label">
+								Nombre
+							</label>
+
+							<input type="text"
+								   th:field="*{nombre}"
+								   class="form-control"
+								   placeholder="Ingrese el nombre"
+								   required>
+
+						</div>
+
+						<div class="col-md-6 mb-3">
+
+							<label class="form-label">
+								Teléfono
+							</label>
+
+							<input type="text"
+								   th:field="*{telefono}"
+								   class="form-control"
+								   placeholder="Ingrese el teléfono"
+								   required>
+
+						</div>
+
+						<div class="col-md-6 mb-3">
+
+							<label class="form-label">
+								Dirección
+							</label>
+
+							<input type="text"
+								   th:field="*{direccion}"
+								   class="form-control"
+								   placeholder="Ingrese la dirección"
+								   required>
+
+						</div>
+
+						<div class="col-md-6 mb-3">
+
+							<label class="form-label">
+								Zona
+							</label>
+
+							<input type="text"
+								   th:field="*{zona}"
+								   class="form-control"
+								   placeholder="Ingrese la zona"
+								   required>
+
+						</div>
+
+						<div class="col-md-6 mb-3">
+
+							<label class="form-label">
+								Estado
+							</label>
+
+							<select th:field="*{estado}"
+									class="form-select">
+
+								<option th:value="true">
+									Activo
+								</option>
+
+								<option th:value="false">
+									Inactivo
+								</option>
+
+							</select>
+
+						</div>
+
+					</div>
+
+					<div class="mt-4">
+
+						<button type="submit"
+								class="btn btn-gradient-primary">
+
+							<i class="mdi mdi-content-save"></i>
+							Guardar
+
+						</button>
+
+						<a th:href="@{/farmacia}"
+						   class="btn btn-light">
+
+							Cancelar
+
+						</a>
+
+					</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

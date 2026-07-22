@@ -28,7 +28,7 @@ public class FarmaciasController {
 
 		model.addAttribute("listarfarmacias", resultadoBD);
 
-		return "/farmacias/listar";
+		return "/farmacias/listarfarmacia";
 	}
 
 	@GetMapping("/nuevo")
@@ -36,7 +36,7 @@ public class FarmaciasController {
 
 		model.addAttribute("farmacia", new FarmaciasRequestDto());
 
-		return "/farmacias/crear";
+		return "/farmacias/nuevafarmacia";
 	}
 
 	@PostMapping("/guardar")

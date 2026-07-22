@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{dashboard}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo inventario</title>
+</head>
+
+<body>
+
+<div layout:fragment="contenidopaginas">
+
+    <div class="page-header">
+
+        <h3 class="page-title">
+            Registrar inventario
+        </h3>
+
+        <nav aria-label="breadcrumb">
+
+            <ol class="breadcrumb">
+
+                <li class="breadcrumb-item">
+                    <a th:href="@{/inventario}">
+                        Inventarios
+                    </a>
+                </li>
+
+                <li class="breadcrumb-item active"
+                    aria-current="page">
+                    Nuevo
+                </li>
+
+            </ol>
+
+        </nav>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-8 grid-margin stretch-card">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h4 class="card-title">
+                        Datos del inventario
+                    </h4>
+
+                    <form class="forms-sample"
+                          th:action="@{/inventario/guardar}"
+                          th:object="${inventario}"
+                          method="post">
+
+                        <div class="form-group">
+
+                            <label for="stock">
+                                Stock
+                            </label>
+
+                            <input type="number"
+                                   class="form-control"
+                                   id="stock"
+                                   th:field="*{stock}"
+                                   min="0"
+                                   placeholder="Ingrese el stock"
+                                   required>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="stockMinimo">
+                                Stock mínimo
+                            </label>
+
+                            <input type="number"
+                                   class="form-control"
+                                   id="stockMinimo"
+                                   th:field="*{stockMinimo}"
+                                   min="0"
+                                   placeholder="Ingrese el stock mínimo"
+                                   required>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="fechaActualizacion">
+                                Fecha de actualización
+                            </label>
+
+                            <input type="date"
+                                   class="form-control"
+                                   id="fechaActualizacion"
+                                   th:field="*{fechaActualizacion}"
+                                   required>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="estado">
+                                Estado
+                            </label>
+
+                            <select class="form-control"
+                                    id="estado"
+                                    th:field="*{estado}"
+                                    required>
+
+                                <option value="true">
+                                    Activo
+                                </option>
+
+                                <option value="false">
+                                    Inactivo
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-gradient-primary mr-2">
+                            Guardar
+                        </button>
+
+                        <a th:href="@{/inventario}"
+                           class="btn btn-light">
+                            Cancelar
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
